@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <title>InfoMap</title>
+    <meta name="description" content="Mapa con GPS en tiempo real y la información de cada sitio, resumida desde Wikipedia." />
+
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#22354B" />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- iOS: instalable desde Compartir > Añadir a pantalla de inicio -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="InfoMap" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
+    <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
+
+    <link rel="preconnect" href="https://tile.openstreetmap.org" crossorigin />
+    <link rel="preconnect" href="https://es.wikipedia.org" crossorigin />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
