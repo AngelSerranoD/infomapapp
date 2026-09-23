@@ -1,3 +1,8 @@
+/*
+ * InfoMap
+ * Copyright (c) 2026 Ángel Serrano Domínguez. Todos los derechos reservados.
+ */
+
 export type CategoryId =
   | 'culture'
   | 'food'

@@ -1,6 +1,8 @@
 # InfoMap
 
-Mapa con GPS en tiempo real que ensena los sitios de interes que tienes
+**[Ver la ficha y la demo interactiva en el portfolio →](https://aserrano.dev/proyecto/infomap)**
+
+Mapa con GPS en tiempo real que enseña los sitios de interés que tienes
 alrededor. Al tocar uno, sale su ficha con el resumen de Wikipedia, los datos de
 OpenStreetMap (horario, teléfono, dirección) y un botón para abrir el artículo
 completo si quieres más.
@@ -8,7 +10,7 @@ completo si quieres más.
 Es una **PWA**: se instala en el iPhone y en Android desde el propio navegador,
 sin tiendas de aplicaciones.
 
-## Que hace
+## Qué hace
 
 - **GPS en directo.** Punto azul con su margen de error, seguimiento continuo y
   brújula (el mapa gira hacia donde miras).
@@ -18,7 +20,7 @@ sin tiendas de aplicaciones.
 - **Información al tocar.** Resumen del sitio desde Wikipedia, en español si
   existe y en inglés si no. Si tocas un punto sin chincheta, se mira qué hay ahí.
 - **Filtros por categoría**, buscador de sitios y direcciones, sitios guardados,
-  botón de "como llegar" (Apple Maps o Google Maps) y lectura en voz alta.
+  botón de "cómo llegar" (Apple Maps o Google Maps) y lectura en voz alta.
 - **Sin conexión**: los sitios guardados, sus fichas y los trozos de mapa ya
   vistos siguen funcionando.
 
@@ -55,7 +57,7 @@ python tool/make_icons.py
 
 ## Publicarla e instalarla en el móvil
 
-Es una web estatica: vale cualquier hosting que de `https`. Lo más rápido es
+Es una web estática: vale cualquier hosting que dé `https`. Lo más rápido es
 subir la carpeta `dist/` a **Netlify**, **Vercel** o **Cloudflare Pages** (los
 tres tienen plan gratuito y dan certificado solos).
 
@@ -64,24 +66,24 @@ npm run build
 # y arrastrar la carpeta dist/ a app.netlify.com/drop
 ```
 
-Despues, en el móvil:
+Después, en el móvil:
 
 - **iPhone**: abrir la dirección en **Safari** (en Chrome de iOS no se puede
   instalar), botón Compartir y **Añadir a pantalla de inicio**.
-- **Android**: abrir en Chrome, menu de tres puntos y **Instalar aplicación**.
-  Tambien aparece un botón de instalar dentro de la propia app.
+- **Android**: abrir en Chrome, menú de tres puntos y **Instalar aplicación**.
+  También aparece un botón de instalar dentro de la propia app.
 
 Si la publicas en un subdirectorio (por ejemplo GitHub Pages en
 `usuario.github.io/infomap/`), hay que poner `base: '/infomap/'` en
 `vite.config.ts` y cambiar `start_url` y `scope` en
-`public/manifest.webmanifest`. En la raiz del dominio no hace falta tocar nada.
+`public/manifest.webmanifest`. En la raíz del dominio no hace falta tocar nada.
 
-## Como esta montado
+## Cómo está montado
 
-| Carpeta | Que hay |
+| Carpeta | Qué hay |
 | --- | --- |
 | `src/components/` | Mapa (Leaflet a pelo), panel deslizante, ficha del sitio, barra superior |
-| `src/lib/` | Datos y logica: Overpass, Wikipedia, Nominatim, GPS, brújula, favoritos, ajustes |
+| `src/lib/` | Datos y lógica: Overpass, Wikipedia, Nominatim, GPS, brújula, favoritos, ajustes |
 | `src/styles/` | Paleta y estilos del panel |
 | `public/` | Manifest, service worker e iconos |
 | `tool/` | Generador de iconos |
@@ -96,7 +98,7 @@ De dónde salen los datos:
   800 m con nombre parecido, y por último el buscador de Wikipedia acotado a
   5 km. Cuando el artículo se encuentra por los dos últimos caminos, la ficha lo
   advierte.
-- **Buscador y "que hay en este punto"**:
+- **Buscador y "qué hay en este punto"**:
   [Nominatim](https://nominatim.openstreetmap.org), con una petición por segundo
   como máximo, que es lo que piden en sus condiciones de uso.
 - **Teselas del mapa**: `tile.openstreetmap.org`.
@@ -105,18 +107,24 @@ De dónde salen los datos:
 
 - **La paleta** son los cuatro colores Ocean (`#345DA7`, `#3B8AC4`, `#4BB4DE`,
   `#EFDBCB`) sobre el azul marino del muestrario. Los tonos de fondo y los siete
-  colores de categoría estan **derivados** de esos cuatro: con cuatro no se
+  colores de categoría están **derivados** de esos cuatro: con cuatro no se
   separan capas ni se distinguen siete tipos de sitio.
 - **El GPS filtra posiciones malas**: una lectura mucho peor que la anterior
   suele venir de la antena de telefonía y se descarta, salvo que la buena ya sea
   vieja o el movimiento sea real.
-- **La brújula en iPhone** necesita permiso explicito, y solo se puede pedir
+- **La brújula en iPhone** necesita permiso explícito, y solo se puede pedir
   desde un toque del usuario: por eso se activa con el segundo toque en el botón
   de la diana.
 - **Los horarios** de OpenStreetMap solo se interpretan en su forma habitual
   (`Mo-Fr 09:00-14:00; Sa 10:00-14:00`, `24/7`). Si el horario trae algo raro, se
-  ensena el texto tal cual sin decir si esta abierto: es preferible callar a
+  enseña el texto tal cual sin decir si está abierto: es preferible callar a
   mentir.
+- **Qué sale del móvil.** Para buscar sitios y fichas, la app pregunta a
+  Overpass, Wikipedia y Nominatim por **la zona del mapa que se está
+  mirando**, el punto que se toca o, al usar el buscador, el centro del mapa
+  (que, si el mapa te va siguiendo, es más o menos donde estás). Es lo mismo
+  que haría cualquier mapa; no hay más destinatarios que esos tres servicios
+  y las teselas de OpenStreetMap.
 - **Nada se envía a ningún servidor propio.** Favoritos, ajustes, fichas de
   Wikipedia y la última posición del mapa se guardan en `localStorage`; los
   sitios descargados, en IndexedDB.
@@ -131,3 +139,11 @@ De dónde salen los datos:
 - **Al tocar la clasificación de sitios** (`classify`, etiquetas, puntuación) hay
   que subir `SCHEMA` en `src/lib/tileDb.ts`: las teselas guardan esos datos ya
   calculados y, si no, las zonas descargadas se quedan con la versión antigua.
+
+## Licencia
+
+© 2026 Ángel Serrano Domínguez. Todos los derechos reservados.
+
+Código publicado únicamente para su consulta y valoración profesional. No se permite su copia, modificación, distribución ni reutilización sin autorización expresa y por escrito del autor. Véanse [LICENSE](LICENSE) y [NOTICE](NOTICE).
+
+Los datos del mapa son © colaboradores de OpenStreetMap (ODbL) y los resúmenes, de Wikipedia (CC BY-SA).

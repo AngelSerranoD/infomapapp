@@ -1,3 +1,8 @@
+/*
+ * InfoMap
+ * Copyright (c) 2026 Ángel Serrano Domínguez. Todos los derechos reservados.
+ */
+
 import { useEffect, useMemo, useRef, type ReactNode } from 'react';
 import { categoryColor } from '../lib/categories';
 import { directionsAppName, openDirections } from '../lib/directions';

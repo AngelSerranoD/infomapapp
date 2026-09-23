@@ -1,3 +1,8 @@
+/*
+ * InfoMap
+ * Copyright (c) 2026 Ángel Serrano Domínguez. Todos los derechos reservados.
+ */
+
 /** Lectura en voz alta de la ficha, con la voz del sistema. */
 
 export const speechSupported =

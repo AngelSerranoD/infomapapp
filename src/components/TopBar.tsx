@@ -1,3 +1,8 @@
+/*
+ * InfoMap
+ * Copyright (c) 2026 Ángel Serrano Domínguez. Todos los derechos reservados.
+ */
+
 import { useEffect, useRef, useState } from 'react';
 import { searchPlaces, type SearchHit } from '../lib/nominatim';
 import { CATEGORIES, type CategoryId } from '../lib/categories';

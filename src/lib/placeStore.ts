@@ -1,3 +1,8 @@
+/*
+ * InfoMap
+ * Copyright (c) 2026 Ángel Serrano Domínguez. Todos los derechos reservados.
+ */
+
 import { fetchPlaces, OverpassError } from './overpass';
 import { tileBBox, tileKey, type Tile } from './tiles';
 import { pruneTiles, readTiles, writeTile } from './tileDb';

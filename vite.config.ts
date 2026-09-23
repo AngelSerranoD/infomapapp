@@ -1,3 +1,8 @@
+/*
+ * InfoMap
+ * Copyright (c) 2026 Ángel Serrano Domínguez. Todos los derechos reservados.
+ */
+
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 

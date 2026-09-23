@@ -1,3 +1,8 @@
+/*
+ * InfoMap
+ * Copyright (c) 2026 Ángel Serrano Domínguez. Todos los derechos reservados.
+ */
+
 import { categoryColor } from '../lib/categories';
 import { useFavorites } from '../lib/favorites';
 import { formatDistance } from '../lib/geo';

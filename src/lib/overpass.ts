@@ -1,3 +1,8 @@
+/*
+ * InfoMap
+ * Copyright (c) 2026 Ángel Serrano Domínguez. Todos los derechos reservados.
+ */
+
 import { CATEGORIES, CATEGORY_BY_ID, classify, type CategoryId } from './categories';
 import type { BBox, OsmType, Place } from './types';
 

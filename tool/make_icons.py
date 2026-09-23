@@ -1,3 +1,6 @@
+# InfoMap
+# Copyright (c) 2026 Ángel Serrano Domínguez. Todos los derechos reservados.
+
 """Genera los iconos de InfoMap a partir de la paleta Ocean.
 
     python tool/make_icons.py

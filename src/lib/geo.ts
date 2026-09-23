@@ -1,3 +1,8 @@
+/*
+ * InfoMap
+ * Copyright (c) 2026 Ángel Serrano Domínguez. Todos los derechos reservados.
+ */
+
 import type { BBox } from './types';
 
 const EARTH_RADIUS_M = 6371008.8;

@@ -1,3 +1,8 @@
+/*
+ * InfoMap
+ * Copyright (c) 2026 Ángel Serrano Domínguez. Todos los derechos reservados.
+ */
+
 import { isApplePlatform } from '../lib/directions';
 import { useSettings, type Settings } from '../lib/useSettings';
 import { CloseIcon, InfoIcon } from './Icons';

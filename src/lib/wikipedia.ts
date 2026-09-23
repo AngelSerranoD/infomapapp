@@ -1,3 +1,8 @@
+/*
+ * InfoMap
+ * Copyright (c) 2026 Ángel Serrano Domínguez. Todos los derechos reservados.
+ */
+
 import type { Place, WikiSummary } from './types';
 
 /** Idiomas por orden de preferencia al buscar el artículo. */

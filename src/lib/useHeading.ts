@@ -1,3 +1,8 @@
+/*
+ * InfoMap
+ * Copyright (c) 2026 Ángel Serrano Domínguez. Todos los derechos reservados.
+ */
+
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface WebkitOrientationEvent extends DeviceOrientationEvent {

@@ -1,3 +1,8 @@
+/*
+ * InfoMap
+ * Copyright (c) 2026 Ángel Serrano Domínguez. Todos los derechos reservados.
+ */
+
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { padBBox } from './geo';
 import { OverpassError } from './overpass';
@@ -34,8 +39,11 @@ export function usePlaces(bbox: BBox | null, zoom: number) {
   const [loaded, setLoaded] = useState<Place[]>([]);
   const [pending, setPending] = useState(0);
   const [error, setError] = useState<string | null>(null);
-  const [tooFar, setTooFar] = useState(false);
   const [attempt, setAttempt] = useState(0);
+
+  // Se deriva del zoom en cada render, no se guarda: así no hay que ponerlo a
+  // mano dentro del efecto (lo que costaba un render de más en cada cambio).
+  const tooFar = bbox !== null && zoom < MIN_ZOOM_FOR_PLACES;
 
   // Cada cambio de vista invalida las respuestas de la anterior.
   const generation = useRef(0);
@@ -45,14 +53,8 @@ export function usePlaces(bbox: BBox | null, zoom: number) {
     const mine = generation.current;
     const current = () => generation.current === mine;
 
-    if (!bbox) return;
-    if (zoom < MIN_ZOOM_FOR_PLACES) {
-      setTooFar(true);
-      setLoaded([]);
-      setPending(0);
-      return;
-    }
-    setTooFar(false);
+    // Con el zoom lejos no se pide nada; lo cargado se oculta más abajo.
+    if (!bbox || tooFar) return;
 
     const tiles = tilesForBBox(bbox, MAX_TILES);
     const keys = tiles.map(tileKey);
@@ -102,20 +104,22 @@ export function usePlaces(bbox: BBox | null, zoom: number) {
     return () => {
       if (debounce) window.clearTimeout(debounce);
     };
-  }, [bbox, zoom, attempt]);
+  }, [bbox, tooFar, attempt]);
 
   /**
    * Las teselas van mas alla de lo que se ve. Se recorta a la pantalla con un
-   * margen para que el tope de chinchetas no se gaste en sitios de fuera.
+   * margen para que el tope de chinchetas no se gaste en sitios de fuera. Con
+   * el zoom lejos no se pinta ninguna.
    */
   const places = useMemo(() => {
+    if (tooFar) return [];
     if (!bbox || !loaded.length) return loaded;
     const [south, west, north, east] = padBBox(bbox, 0.15);
     return loaded.filter(
       (place) =>
         place.lat >= south && place.lat <= north && place.lon >= west && place.lon <= east,
     );
-  }, [loaded, bbox]);
+  }, [loaded, bbox, tooFar]);
 
   const state: PlacesState = tooFar
     ? 'zoom-out'

@@ -1,3 +1,8 @@
+/*
+ * InfoMap
+ * Copyright (c) 2026 Ángel Serrano Domínguez. Todos los derechos reservados.
+ */
+
 /* InfoMap — service worker.
    Guarda la app y los trozos de mapa ya vistos para que funcione sin cobertura. */
 

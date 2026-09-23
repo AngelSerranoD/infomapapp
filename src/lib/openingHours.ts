@@ -1,3 +1,8 @@
+/*
+ * InfoMap
+ * Copyright (c) 2026 Ángel Serrano Domínguez. Todos los derechos reservados.
+ */
+
 /**
  * Lectura de opening_hours de OpenStreetMap, solo del subconjunto habitual
  * ("Mo-Fr 09:00-14:00,17:00-20:00; Sa 10:00-14:00; Su off", "24/7").

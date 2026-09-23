@@ -1,3 +1,8 @@
+/*
+ * InfoMap
+ * Copyright (c) 2026 Ángel Serrano Domínguez. Todos los derechos reservados.
+ */
+
 import L from 'leaflet';
 import { useEffect, useRef } from 'react';
 import { categoryColor } from '../lib/categories';

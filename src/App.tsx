@@ -1,3 +1,8 @@
+/*
+ * InfoMap
+ * Copyright (c) 2026 Ángel Serrano Domínguez. Todos los derechos reservados.
+ */
+
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import FavoritesSheet from './components/FavoritesSheet';
 import HelpSheet from './components/HelpSheet';
